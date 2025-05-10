@@ -7,7 +7,10 @@ const TodosSlice = createSlice({
   reducers: {
     addTodo: (state, action) => {
       const { value, todoToEdit } = action.payload;
-      if (value !== "" || todoToEdit !== "") {
+      if (
+        (value && value.trim() !== "") ||
+        (todoToEdit && todoToEdit.trim() !== "")
+      ) {
         let new_todo = {};
         new_todo.id = crypto.randomUUID();
         new_todo.title = value ? value : todoToEdit;
